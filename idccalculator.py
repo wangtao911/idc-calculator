@@ -39,18 +39,18 @@ with st.sidebar:
     st.text('低速发展')
     low_tab_df = pd.DataFrame(
         [
-            {'月':1,'S机型按月增加台数':0,'计算按月增加台数':0,'推理按月增加台数':0,'百G专线条数':0},
-            {'月':2,'S机型按月增加台数':0,'计算按月增加台数':0,'推理按月增加台数':0,'百G专线条数':0},
+            {'月':1,'440w服务器月增数':0,'4000w服务器月增数':0,'1500w服务器月增数':0,'百G专线条数':0},
+            {'月':2,'440w服务器月增数':0,'4000w服务器月增数':0,'1500w服务器月增数':0,'百G专线条数':0},
         ]
     )
     low_edited_df = st.data_editor(low_tab_df,key="low",column_config={
-            "S机型按月增加台数": st.column_config.Column(
+            "440w服务器月增数": st.column_config.Column(
                 width="small",
             ),
-            "计算按月增加台数": st.column_config.Column(
+            "4000w服务器月增数": st.column_config.Column(
                 width="small",
             ),
-            "推理按月增加台数": st.column_config.Column(
+            "1500w服务器月增数": st.column_config.Column(
                 width="small",
             ),
             "百G专线条数": st.column_config.Column(
@@ -62,18 +62,18 @@ with st.sidebar:
     st.text('正常发展')
     tab_df = pd.DataFrame(
         [
-            {'月':1,'S机型按月增加台数':0,'计算按月增加台数':0,'推理按月增加台数':0,'百G专线条数':0},
-            {'月':2,'S机型按月增加台数':0,'计算按月增加台数':0,'推理按月增加台数':0,'百G专线条数':0},
+            {'月':1,'440w服务器月增数':0,'4000w服务器月增数':0,'1500w服务器月增数':0,'百G专线条数':0},
+            {'月':2,'440w服务器月增数':0,'4000w服务器月增数':0,'1500w服务器月增数':0,'百G专线条数':0},
         ]
     )
     edited_df = st.data_editor(tab_df,column_config={
-            "S机型按月增加台数": st.column_config.Column(
+            "440w服务器月增数": st.column_config.Column(
                 width="small",
             ),
-            "计算按月增加台数": st.column_config.Column(
+            "4000w服务器月增数": st.column_config.Column(
                 width="small",
             ),
-            "推理按月增加台数": st.column_config.Column(
+            "1500w服务器月增数": st.column_config.Column(
                 width="small",
             ),
             "百G专线条数": st.column_config.Column(
@@ -85,18 +85,18 @@ with st.sidebar:
     st.text('高速发展')
     high_tab_df = pd.DataFrame(
         [
-            {'月':1,'S机型按月增加台数':0,'计算按月增加台数':0,'推理按月增加台数':0,'百G专线条数':0},
-            {'月':2,'S机型按月增加台数':0,'计算按月增加台数':0,'推理按月增加台数':0,'百G专线条数':0},
+            {'月':1,'440w服务器月增数':0,'4000w服务器月增数':0,'1500w服务器月增数':0,'百G专线条数':0},
+            {'月':2,'440w服务器月增数':0,'4000w服务器月增数':0,'1500w服务器月增数':0,'百G专线条数':0},
         ]
     )
     high_edited_df = st.data_editor(high_tab_df,key="high",column_config={
-            "S机型按月增加台数": st.column_config.Column(
+            "440w服务器月增数": st.column_config.Column(
                 width="small",
             ),
-            "计算按月增加台数": st.column_config.Column(
+            "4000w服务器月增数": st.column_config.Column(
                 width="small",
             ),
-            "推理按月增加台数": st.column_config.Column(
+            "1500w服务器月增数": st.column_config.Column(
                 width="small",
             ),
             "百G专线条数": st.column_config.Column(
@@ -110,9 +110,9 @@ with st.sidebar:
 
 def make_final_df(df):
 
-    df['S累计']=df['S机型按月增加台数'].cumsum()
-    df['计算累计']=df['计算按月增加台数'].cumsum()
-    df['推理累计']=df['推理按月增加台数'].cumsum()
+    df['S累计']=df['440w服务器月增数'].cumsum()
+    df['计算累计']=df['4000w服务器月增数'].cumsum()
+    df['推理累计']=df['1500w服务器月增数'].cumsum()
     df['S机柜']=np.ceil(df['S累计']/10)
     df['计算机柜']=np.ceil(df['计算累计'])
     df['推理机柜']=np.ceil(df['推理累计']/3)
