@@ -19,22 +19,22 @@ idc_power_price_dct={}
 with st.sidebar:
     col1, col2 = st.columns(2)
     with col1:
-        tj_line = st.number_input('天津/廊坊百G专线',value=10.5,step=1.0)*10000
-        #st.write('天津/廊坊百G专线：', tj_line)
+        A_line = st.number_input('A机房百G专线',value=10.5,step=1.0)*10000
+        #st.write('A机房百G专线：', A_line)
 
-        hl_line = st.number_input('怀来百G专线',value=16.0,step=1.0)*10000
-        #st.write('怀来百G专线：', hl_line)
+        B_line = st.number_input('B机房百G专线',value=16.0,step=1.0)*10000
+        #st.write('B机房百G专线：', B_line)
 
-        nm_line = st.number_input('内蒙百G专线',value=21.0,step=1.0)*10000
-        #st.write('内蒙百G专线：', nm_line)
+        C_line = st.number_input('C机房百G专线',value=21.0,step=1.0)*10000
+        #st.write('C机房百G专线：', C_line)
 
-        bj_line = st.number_input('北京百G专线',value=5.0,step=1.0)*10000
-        #st.write('北京百G专线：', bj_line)
+        D_line = st.number_input('D机房百G专线',value=5.0,step=1.0)*10000
+        #st.write('D机房百G专线：', D_line)
     with col2:
-        idc_power_price_dct['tj-4.4-price'] = st.number_input('天津/廊坊机柜',value=4470,step=100)
-        idc_power_price_dct['hl-4.4-price'] = st.number_input('怀来机柜',value=4700,step=100)
-        idc_power_price_dct['nm-4.4-price'] = st.number_input('内蒙机柜',value=2650,step=100)
-        idc_power_price_dct['bj-4.4-price'] = st.number_input('北京机柜',value=6600,step=100)
+        idc_power_price_dct['A-4.4-price'] = st.number_input('A机房机柜',value=4470,step=100)
+        idc_power_price_dct['B-4.4-price'] = st.number_input('B机房机柜',value=4700,step=100)
+        idc_power_price_dct['C-4.4-price'] = st.number_input('C机房机柜',value=2650,step=100)
+        idc_power_price_dct['D-4.4-price'] = st.number_input('D机房机柜',value=6600,step=100)
         
     st.text('低速发展')
     low_tab_df = pd.DataFrame(
@@ -124,25 +124,25 @@ def make_final_df(df):
 
     nm_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
     nm_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['nm-4.4-price']
-    nm_df['专线成本']=(jigui_df['百G专线'])*nm_line
+    nm_df['专线成本']=(jigui_df['百G专线'])*C_line
     #st.text('nm_df')
     #st.dataframe(nm_df)
 
     tj_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
     tj_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['tj-4.4-price']
-    tj_df['专线成本']=(jigui_df['百G专线'])*tj_line
+    tj_df['专线成本']=(jigui_df['百G专线'])*A_line
     #st.text('tj_df')
     #st.dataframe(tj_df)
 
     hl_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
     hl_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['hl-4.4-price']
-    hl_df['专线成本']=(jigui_df['百G专线'])*hl_line
+    hl_df['专线成本']=(jigui_df['百G专线'])*B_line
     #st.text('hl_df')
     #st.dataframe(hl_df)
 
     bj_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
     bj_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['bj-4.4-price']
-    bj_df['专线成本']=(jigui_df['百G专线'])*bj_line
+    bj_df['专线成本']=(jigui_df['百G专线'])*D_line
     #st.text('bj_df')
     #st.dataframe(bj_df)
 
