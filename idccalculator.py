@@ -122,12 +122,6 @@ def make_final_df(df):
     jigui_df=df[['月','S机柜','计算机柜','推理机柜','百G专线']]
     #st.dataframe(jigui_df)
 
-    C_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
-    C_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['C-4.4-price']
-    C_df['专线成本']=(jigui_df['百G专线'])*C_line
-    #st.text('C_df')
-    #st.dataframe(C_df)
-
     A_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
     A_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['A-4.4-price']
     A_df['专线成本']=(jigui_df['百G专线'])*A_line
@@ -140,6 +134,12 @@ def make_final_df(df):
     #st.text('B_df')
     #st.dataframe(B_df)
 
+    C_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
+    C_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['C-4.4-price']
+    C_df['专线成本']=(jigui_df['百G专线'])*C_line
+    #st.text('C_df')
+    #st.dataframe(C_df)
+
     D_df=jigui_df[['月','S机柜','计算机柜','推理机柜','百G专线']]
     D_df['机柜成本']=(jigui_df['S机柜']+jigui_df['计算机柜']+jigui_df['推理机柜'])*idc_power_price_dct['D-4.4-price']
     D_df['专线成本']=(jigui_df['百G专线'])*D_line
@@ -149,10 +149,10 @@ def make_final_df(df):
 
     all_diqu_df=pd.DataFrame()
     all_diqu_df['月']=C_df['月']
-    all_diqu_df['内蒙成本']=C_df['机柜成本']+C_df['专线成本']
-    all_diqu_df['天津成本']=A_df['机柜成本']+A_df['专线成本']
-    all_diqu_df['怀来成本']=B_df['机柜成本']+B_df['专线成本']
-    all_diqu_df['北京成本']=D_df['机柜成本']+D_df['专线成本']
+    all_diqu_df['A机房成本']=A_df['机柜成本']+A_df['专线成本']
+    all_diqu_df['B机房成本']=B_df['机柜成本']+B_df['专线成本']
+    all_diqu_df['C机房成本']=C_df['机柜成本']+C_df['专线成本']
+    all_diqu_df['D机房成本']=D_df['机柜成本']+D_df['专线成本']
     #st.dataframe(all_diqu_df)
 
     return all_diqu_df,jigui_df
@@ -164,21 +164,21 @@ st.image("https://p.ipic.vip/priovl.png")
 low_diqu_df,low_jigui_df = make_final_df(low_edited_df)
 low_chart_data = pd.DataFrame(
     low_diqu_df,
-    columns=['内蒙成本', '天津成本', '怀来成本','北京成本'])
+    columns=['C机房成本', 'A机房成本', 'B机房成本','D机房成本'])
 
 
 #--正常
 all_diqu_df,jigui_df = make_final_df(edited_df)
 chart_data = pd.DataFrame(
     all_diqu_df,
-    columns=['内蒙成本', '天津成本', '怀来成本','北京成本'])
+    columns=['C机房成本', 'A机房成本', 'B机房成本','D机房成本'])
 
 
 #--高速
 high_diqu_df,high_jigui_df = make_final_df(high_edited_df)
 high_chart_data = pd.DataFrame(
     high_diqu_df,
-    columns=['内蒙成本', '天津成本', '怀来成本','北京成本'])
+    columns=['C机房成本', 'A机房成本', 'B机房成本','D机房成本'])
 
 
 col1, col2, col3 = st.columns([3,1,1])
