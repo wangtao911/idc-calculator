@@ -191,7 +191,7 @@ with col2:
     st.line_chart(low_jigui_df[['百G专线']])
 with col3:
     st.title('机柜')
-    st.line_chart(low_jigui_df[['S机柜','计算机柜','推理机柜','百G专线']])
+    st.line_chart(low_jigui_df[['S机柜','计算机柜','推理机柜','百G专线']]) 
 
 
 col1, col2, col3 = st.columns([3,1,1])
